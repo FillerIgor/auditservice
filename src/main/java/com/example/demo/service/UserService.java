@@ -1,10 +1,9 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.User;
+import com.example.demo.entity.User;
 import com.example.demo.exceptions.UserException;
 import com.example.demo.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.jooq.DSLContext;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;

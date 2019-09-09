@@ -19,6 +19,7 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-data-jpa:2.1.6.RELEASE'
     compile 'org.springframework.boot:spring-boot-starter-web:2.1.6.RELEASE'
     compile 'org.springframework.boot:spring-boot-starter-webflux:2.1.6.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-jooq:2.1.6.RELEASE'
     compile 'org.projectlombok:lombok:1.16.18'
     compile 'org.jooq:jooq:3.11.11'
     runtime 'com.h2database:h2:1.4.199'

@@ -1,6 +1,6 @@
 package com.example.demo.repositories;
 
-import com.example.demo.dto.User;
+import com.example.demo.entity.User;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.UUID;

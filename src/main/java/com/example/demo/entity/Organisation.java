@@ -1,4 +1,4 @@
-package com.example.demo.dto;
+package com.example.demo.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;

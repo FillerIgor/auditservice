@@ -5,11 +5,13 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.fasterxml.jackson.databind.util.Converter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.util.UUID;
 
 @EnableWebMvc
+@EnableTransactionManagement
 @SpringBootApplication
 public class DemoApplication {
 

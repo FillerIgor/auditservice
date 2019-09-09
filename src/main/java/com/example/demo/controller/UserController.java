@@ -1,11 +1,12 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.User;
+import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
@@ -19,7 +20,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/{uuid}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     private Mono<User> getUser(@PathVariable String uuid) {
-        return userService.getUserById(UUID.fromString(uuid));
+        return Mono.justOrEmpty(userService.getUserById(UUID.fromString(uuid)));
     }
 
     @ResponseStatus(HttpStatus.OK)

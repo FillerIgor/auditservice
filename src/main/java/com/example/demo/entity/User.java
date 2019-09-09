@@ -1,4 +1,4 @@
-package com.example.demo.dto;
+package com.example.demo.entity;
 
 import lombok.Data;
 
@@ -21,6 +21,5 @@ public class User {
     private String lastName;
 
     @ManyToMany
-    @JoinTable(name = , joinColumns = )
     private List<Organisation> organisation;
 }
