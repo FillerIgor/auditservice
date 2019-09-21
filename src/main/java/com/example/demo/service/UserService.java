@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.User;
+import com.example.demo.entity.hibernate.User;
 import com.example.demo.exceptions.UserException;
 import com.example.demo.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;

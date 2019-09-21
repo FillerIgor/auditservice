@@ -1,11 +1,12 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.User;
+import com.example.demo.entity.hibernate.User;
 import com.example.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.UUID;
@@ -16,6 +17,12 @@ import java.util.UUID;
 public class UserController {
 
     private final UserService userService;
+    private final com.example.demo.service.jooq.UserService jooqUserService;
+
+    @GetMapping("/")
+    private Flux<org.jooq.User> getUsers() {
+        return Flux.fromStream(jooqUserService.getUsers().stream());
+    }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/{uuid}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

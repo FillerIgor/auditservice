@@ -20,9 +20,7 @@ public class JooqConfig {
     public DefaultConfiguration configuration(DataSourceConnectionProvider connectionProvider) {
         DefaultConfiguration jooqConfiguration = new DefaultConfiguration();
         jooqConfiguration.set(connectionProvider);
-        jooqConfiguration
-                .set(new DefaultExecuteListenerProvider(exceptionTransformer()));
-
+        jooqConfiguration.set(new DefaultExecuteListenerProvider(exceptionTransformer()));
         return jooqConfiguration;
     }
 
