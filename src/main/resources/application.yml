@@ -1,16 +1,21 @@
 spring:
   application:
     name: CarRentalDemo
-  datasource:
-    url: jdbc:h2:mem:testdb
-    username: test
-    password: password
-    driver-class-name: org.h2.Driver
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-  h2:
-    console:
-      enabled: true
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: MySuperPass123
+    driverClassName: org.postgresql.Driver
+  jooq:
+    sql-dialect: POSTGRES
+  main:
+    banner-mode: "off"
 
 logging:
   level:

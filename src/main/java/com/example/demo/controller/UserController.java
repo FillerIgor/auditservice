@@ -1,7 +1,8 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.hibernate.User;
+import com.example.demo.dto.UserDto;
 import com.example.demo.service.UserService;
+import jooq.tables.UserData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,46 +13,45 @@ import reactor.core.publisher.Mono;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping(value = "/users", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
-    private final com.example.demo.service.jooq.UserService jooqUserService;
 
     @GetMapping("/")
-    private Flux<org.jooq.User> getUsers() {
-        return Flux.fromStream(jooqUserService.getUsers().stream());
+    private Flux<UserData> getUsers() {
+        return Flux.fromStream(userService.getUsers().stream());
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping(value = "/{uuid}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    private Mono<User> getUser(@PathVariable String uuid) {
+    @GetMapping("/{uuid}")
+    private Mono<UserData> getUser(@PathVariable String uuid) {
         return Mono.justOrEmpty(userService.getUserById(UUID.fromString(uuid)));
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping(value = "/info", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "/info")
     private String getInfo() {
         return "info";
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    private UUID createUser(@RequestBody User user) {
+    @PostMapping
+    private UUID createUser(@RequestBody UserDto user) {
         return userService.createUser(user);
     }
 
-    /*@ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping
-    private UUID updateUser(){
-
+    private UUID updateUser(@RequestBody UserDto user) {
+        return userService.updateUser(user);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping
-    private UUID deleteUser(){
-
-    }*/
+    @DeleteMapping("/{uuid}")
+    private UUID deleteUser(@PathVariable String uuid) {
+        return userService.deleteUserById(uuid);
+    }
 
 }
